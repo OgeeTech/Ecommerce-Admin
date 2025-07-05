@@ -1,0 +1,85 @@
+.quickActions {
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
+
+.quickActionsHeader {
+  margin-bottom: 20px;
+}
+
+.quickActionsHeader h3 {
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.quickActionsHeader p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.actionCard {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: inherit;
+}
+
+.actionCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: #f1f3f4;
+}
+
+.actionIcon {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 22px;
+}
+
+.actionContent {
+  flex: 1;
+}
+
+.actionContent h4 {
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.actionContent p {
+  color: #6b7280;
+  font-size: 13px;
+  margin: 0;
+}
+
+.actionArrow {
+  color: #9ca3af;
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.actionCard:hover .actionArrow {
+  transform: translateX(3px);
+}
