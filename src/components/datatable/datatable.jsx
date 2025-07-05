@@ -1,11 +1,12 @@
 import "./datatable.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { userColumns, userRows, productColumns, productRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Datatable = () => {
-    const [data, setData] = useState(userRows);
+const Datatable = ({ type }) => {
+    const [data, setData] = useState(type === "users" ? userRows : productRows);
+    const columns = type === "users" ? userColumns : productColumns;
 
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
@@ -19,7 +20,7 @@ const Datatable = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to="/users/test" style={{ textDecoration: "none" }}>
+                        <Link to={`/${type}/${params.row.id}`} style={{ textDecoration: "none" }}>
                             <div className="viewButton">View</div>
                         </Link>
                         <div
@@ -33,21 +34,23 @@ const Datatable = () => {
             },
         },
     ];
+
     return (
         <div className="datatable">
             <div className="datatableTitle">
-                Add New User
-                <Link to="/users/new" className="link">
+                {type === "users" ? "Add New User" : "Add New Product"}
+                <Link to={`/${type}/new`} className="link">
                     Add New
                 </Link>
             </div>
             <DataGrid
                 className="datagrid"
                 rows={data}
-                columns={userColumns.concat(actionColumn)}
+                columns={columns.concat(actionColumn)}
                 pageSize={9}
                 rowsPerPageOptions={[9]}
                 checkboxSelection
+                disableSelectionOnClick
             />
         </div>
     );

@@ -1,20 +1,22 @@
 export const userColumns = [
   { field: "id", headerName: "ID", width: 50 },
   {
-    field: "First_name",
-    headerName: "First Name",
-    width: 150,
+    field: "user",
+    headerName: "User",
+    width: 230,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          <img className="cellImg" src={params.row.img} alt="avatar" />
+          {params.row.First_name} {params.row.last_name}
+        </div>
+      );
+    },
   },
-  {
-    field: "last_name",
-    headerName: "Last Name",
-    width: 150,
-  },
-
   {
     field: "email",
     headerName: "Email",
-    width: 180,
+    width: 230,
   },
   {
     field: "phone_no",
@@ -28,6 +30,45 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.value}`}>{params.value}</div>
+      );
+    },
+  },
+];
+
+export const productColumns = [
+  { field: "id", headerName: "ID", width: 50 },
+  {
+    field: "product",
+    headerName: "Product",
+    width: 230,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          <img className="cellImg" src={params.row.img} alt="product" />
+          {params.row.title}
+        </div>
+      );
+    },
+  },
+  {
+    field: "category",
+    headerName: "Category",
+    width: 150,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 100,
+  },
+  {
+    field: "stock",
+    headerName: "Stock",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.value > 0 ? 'active' : 'passive'}`}>
+          {params.value > 0 ? 'In Stock' : 'Out of Stock'}
+        </div>
       );
     },
   },
@@ -124,5 +165,48 @@ export const userRows = [
     email: "snow@gmail.com",
     status: "active",
     phone_no: "081052345",
+  },
+];
+
+export const productRows = [
+  {
+    id: 1,
+    title: "iPhone 13 Pro",
+    img: "https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    category: "Electronics",
+    price: "$999",
+    stock: 25,
+  },
+  {
+    id: 2,
+    title: "MacBook Pro",
+    img: "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    category: "Electronics",
+    price: "$1999",
+    stock: 15,
+  },
+  {
+    id: 3,
+    title: "Nike Air Max",
+    img: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    category: "Fashion",
+    price: "$150",
+    stock: 0,
+  },
+  {
+    id: 4,
+    title: "Samsung Galaxy S21",
+    img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    category: "Electronics",
+    price: "$799",
+    stock: 30,
+  },
+  {
+    id: 5,
+    title: "Dell XPS 13",
+    img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    category: "Electronics",
+    price: "$1299",
+    stock: 12,
   },
 ];

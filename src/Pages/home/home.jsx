@@ -5,21 +5,20 @@ import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widgets/Widget';
 import Table from '../../components/table/Table';
 
-
-const home = () => {
+const Home = () => {
     return (
         <div className='home'>
             <Sidebar />
             <div className="homeContainer">
                 <Navbar />
                 <div className="widgets">
-                    <Widget />
-                    <Widget />
-                    <Widget />
-                    <Widget />
+                    <Widget type="user" />
+                    <Widget type="order" />
+                    <Widget type="earning" />
+                    <Widget type="balance" />
                 </div>
                 <div className="listContainer">
-                    <div className="listTitle">Lastest Transactions</div>
+                    <div className="listTitle">Latest Transactions</div>
                     <Table />
                 </div>
             </div>
@@ -27,4 +26,4 @@ const home = () => {
     )
 }
 
-export default home
+export default Home
