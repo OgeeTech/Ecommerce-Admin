@@ -9,8 +9,8 @@ import { productInputs, userInputs } from "./formSource";
 import "./style/dark.css";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
-import { AuthProvider } from "./context/authContext";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { AuthProvider } from "./context/authContext.js";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
