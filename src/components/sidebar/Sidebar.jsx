@@ -9,13 +9,20 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { DarkModeContext } from '../../context/darkModeContext';
-
+import { useAuth } from '../../context/authContext';
 
 const Sidebar = () => {
     const { dispatch } = useContext(DarkModeContext);
+    const { logout } = useAuth();
+    const location = useLocation();
+
+    const isActive = (path) => {
+        return location.pathname === path || location.pathname.startsWith(path + '/');
+    };
+
     return (
         <div className='sidebar'>
             <div className="top">
@@ -27,23 +34,28 @@ const Sidebar = () => {
             <div className="center">
                 <ul>
                     <p className='title'>MAIN</p>
-                    <li>
-                        <DashboardIcon className='icon' />
-                        <span>Dashboard</span>
-                    </li>
-
-                    <p className="title">LISTS</p>
-                    <Link to="/users" style={{ textDecoration: "none" }}>
-                        <li>
-                            <PersonOutlineOutlinedIcon className='icon' />
-                            <span>users</span>
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                        <li className={isActive('/') && location.pathname === '/' ? 'active' : ''}>
+                            <DashboardIcon className='icon' />
+                            <span>Dashboard</span>
                         </li>
                     </Link>
 
-                    <li>
-                        <StoreOutlinedIcon className='icon' />
-                        <span>Products</span>
-                    </li>
+                    <p className="title">LISTS</p>
+                    <Link to="/users" style={{ textDecoration: "none" }}>
+                        <li className={isActive('/users') ? 'active' : ''}>
+                            <PersonOutlineOutlinedIcon className='icon' />
+                            <span>Users</span>
+                        </li>
+                    </Link>
+
+                    <Link to="/products" style={{ textDecoration: "none" }}>
+                        <li className={isActive('/products') ? 'active' : ''}>
+                            <StoreOutlinedIcon className='icon' />
+                            <span>Products</span>
+                        </li>
+                    </Link>
+                    
                     <li>
                         <CreditCardIcon className='icon' />
                         <span>Orders</span>
@@ -52,13 +64,15 @@ const Sidebar = () => {
                         <LocalShippingIcon className='icon' />
                         <span>Delivery</span>
                     </li>
+
+                    <p className="title">USEFUL</p>
                     <li>
                         <NotificationsNoneIcon className='icon' />
                         <span>Notifications</span>
                     </li>
                     <li>
                         <SettingsApplicationsIcon className='icon' />
-                        <span>Setting</span>
+                        <span>Settings</span>
                     </li>
 
                     <p className="title">USER</p>
@@ -66,7 +80,7 @@ const Sidebar = () => {
                         <AccountCircleIcon className='icon' />
                         <span>Profile</span>
                     </li>
-                    <li>
+                    <li onClick={logout}>
                         <ExitToAppOutlinedIcon className='icon' />
                         <span>Logout</span>
                     </li>
@@ -75,7 +89,6 @@ const Sidebar = () => {
             <div className="bottom">
                 <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
                 <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
-
             </div>
         </div>
     )

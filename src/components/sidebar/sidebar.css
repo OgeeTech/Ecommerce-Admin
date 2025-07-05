@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .logo {
   font-size: 20px;
   font-weight: bold;
@@ -31,6 +32,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 .title {
   font-size: 10px;
   font-weight: bold;
@@ -44,14 +46,32 @@ li {
   align-items: center;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
+  margin: 2px 5px;
+  transition: all 0.3s ease;
 }
+
 li:hover {
   background-color: #ece8ff;
+}
+
+li.active {
+  background-color: #7451f8;
+  color: white;
+}
+
+li.active .icon {
+  color: white;
+}
+
+li.active span {
+  color: white;
 }
 
 .icon {
   font-size: 18px;
   color: #7451f8;
+  transition: color 0.3s ease;
 }
 
 span {
@@ -59,6 +79,7 @@ span {
   font-weight: 600;
   color: #888;
   margin-left: 10px;
+  transition: color 0.3s ease;
 }
 
 .bottom {
@@ -74,7 +95,13 @@ span {
   border: 1px solid #7451f8;
   cursor: pointer;
   margin: 5px;
+  transition: transform 0.3s ease;
 }
+
+.colorOption:hover {
+  transform: scale(1.1);
+}
+
 .colorOption:nth-child(1) {
   background-color: whitesmoke;
 }
